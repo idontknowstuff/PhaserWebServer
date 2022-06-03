@@ -1,0 +1,22 @@
+{
+    "questions":[
+        {
+            "id":"01",
+            "question": "Fizzbuzz: if x is a multiple of 3, print fizz, if x is a multiple of 5, print buzz, if x is a multiple of 3 and 5, print fizzbuzz.",
+            "blocks": ["print(\"fizzbuzz\")", "print(\"fizz\")", "else"],
+            "answer": ["1","2","0","0"]
+        },
+        {
+            "id":"02",
+            "question": "OddSum EvenDivide: there are 2 variables, a and b. If a is odd, then return the sum of a and b. If a is even, then return the quotient of a to b",
+            "blocks": ["+", "-", "*", "/"],
+            "answer": ["1", "4", "0", "0"]
+        },
+        {
+            "id":"03",
+            "question": "OddSubtract EvenMultiply: there are 2 variables, a and b. If a is odd, then return the difference between a and b. If a is even, then return the product of a and b",
+            "blocks": ["+", "-", "*", "/"],
+            "answer": ["2", "3", "0", "0"]
+        }
+    ]
+}
