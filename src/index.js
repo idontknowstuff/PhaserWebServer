@@ -11,6 +11,7 @@ var config = {
     width: 1000,
     height: 600,
     backgroundColor: 0x000000,
+    autoCenter: true,
     scene: [load, mainscreen, modes, singlePlayer, Duel, DuelPrep]
 }
 
