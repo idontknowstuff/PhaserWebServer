@@ -226,7 +226,7 @@ class Duel extends Phaser.Scene {
 
     countdown(){
         if (this.timer >= 0){
-            this.timer -= 10;
+            this.timer -= 1;
             this.time.setText("Time left: " + this.timer);
         }
         else{
