@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   resolve: {
     fallback: {"fs": false},
+    fallback: { "fs": require.resolve("fs/") },
     fallback: { "stream": require.resolve("stream/") },
     fallback: { "string_decoder": require.resolve("string_decoder/") },
     fallback: { "net": require.resolve("net/") },
