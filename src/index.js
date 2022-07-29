@@ -5,7 +5,7 @@ import modes from './scenes/modes.js';
 import singlePlayer from './scenes/singlePlayer.js';
 import Duel from './scenes/duel.js';
 import DuelPrep from './scenes/duelprep.js';
-import { Client } from 'pg';
+
 
 var config = {
     width: 1000,

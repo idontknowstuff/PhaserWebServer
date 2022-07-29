@@ -1,39 +1,33 @@
 {
-  "name": "myweb",
+  "name": "myweblocal",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "engines": {
-    "node": "16.x"
-  },
+  "description": "Setting up the server side of the game",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production",
-    "watch": "webpack --mode development --watch"
+    "build": "webpack --config webpack.config.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idontknowstuff/PhaserWebServer.git"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "webpack": "^5.70.0",
-    "webpack-cli": "^4.9.2"
+  "bugs": {
+    "url": "https://github.com/idontknowstuff/PhaserWebServer/issues"
   },
+  "homepage": "https://github.com/idontknowstuff/PhaserWebServer#readme",
   "dependencies": {
     "assert": "^2.0.0",
-    "buffer": "^6.0.3",
     "build": "^0.1.4",
     "crypto-browserify": "^3.12.0",
     "express": "^4.18.1",
     "file-loader": "^6.2.0",
-    "fs": "^0.0.1-security",
-    "html-loader": "^3.1.0",
-    "json-loader": "^0.5.7",
-    "net": "^1.0.2",
-    "pg": "^8.7.3",
-    "phaser": "^3.55.2",
-    "stream": "^0.0.2",
-    "string_decoder": "^1.3.0",
-    "tls": "^0.0.1",
-    "url": "^0.11.0",
-    "watch": "^0.13.0"
+    "html-loader": "^4.1.0",
+    "phaser": "^3.55.2"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.10.0"
   }
 }

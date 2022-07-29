@@ -1,17 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  resolve: {
-    fallback: {"fs": false},
-    fallback: { "stream": require.resolve("stream/") },
-    fallback: { "string_decoder": require.resolve("string_decoder/") },
-    fallback: { "net": require.resolve("net/") },
-    fallback: { "tls": require.resolve("tls/") },
-    fallback: { "url": require.resolve("url/") },
-    fallback: { "assert": require.resolve("assert/") },
-    fallback: { "buffer": require.resolve("buffer/") },
-    fallback: { "crypto": require.resolve("crypto-browserify") },
-  },
+
   entry: './src/index.js',
   output: {
     filename: 'main.js',
