@@ -1,11 +1,8 @@
 {
-  "name": "myweb",
+  "name": "myweblocal",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "engines": {
-    "node": "16.x"
-  },
+  "description": "Setting up the server side of the game",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node server.js"
