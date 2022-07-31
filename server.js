@@ -5,9 +5,9 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-app.get("/", () => {  
-  console.log("Success!");  
-});
+app.get("/", (req, res) => {    
+  res.send("Success!");    
+});  
 
 app.listen(PORT, () => {
   console.log(`Server running at http:/` + PORT);
