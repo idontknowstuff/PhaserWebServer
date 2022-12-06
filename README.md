@@ -1,2 +1,2 @@
-Setting up the local side of the game
+Setting up the server side of the game
 
