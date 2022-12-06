@@ -3,13 +3,16 @@ import Phaser from "phaser";
 class DuelPrep extends Phaser.Scene {
     constructor() {
         super("DuelPrep");
+        
     }
 
     create(){
-        this.background = this.add.image(0, 0, "background");
-        this.background.setOrigin(0,0);
+        fetch('https://jsonplaceholder.typicode.com/todos/1')
+            .then(response => response.json())
+            .then(json => this.add.text(100,100, json.title))
 
-        var text = this.add.text(100,100, 'prepping for battle');
+        this.background = this.add.image(0, 0, "background");
+        this.background.setOrigin(0,0); 
 
         // back button
         var BackBtn = this.add.image(50,25, "Back");
