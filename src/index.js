@@ -5,6 +5,8 @@ import modes from './scenes/modes.js';
 import singlePlayer from './scenes/singlePlayer.js';
 import Duel from './scenes/duel.js';
 import DuelPrep from './scenes/duelprep.js';
+import victory from './scenes/victory.js';
+import defeat from './scenes/defeat.js';
 
 
 var config = {
@@ -12,7 +14,7 @@ var config = {
     height: 600,
     backgroundColor: 0x000000,
     autoCenter: true,
-    scene: [load, mainscreen, modes, singlePlayer, Duel, DuelPrep]
+    scene: [load, mainscreen, modes, singlePlayer, Duel, DuelPrep, victory, defeat]
 }
 
 var game = new Phaser.Game(config);

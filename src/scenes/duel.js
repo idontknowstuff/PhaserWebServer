@@ -109,7 +109,6 @@ class Duel extends Phaser.Scene {
             gameObject.x = dragX;
             gameObject.y = dragY;
 
-            console.log("dragged");
         });
 
         //  4 drop zones and sets the names
@@ -226,7 +225,7 @@ class Duel extends Phaser.Scene {
 
     countdown(){
         if (this.timer >= 0){
-            this.timer -= 1;
+            this.timer -= 10;
             this.time.setText("Time left: " + this.timer);
         }
         else{
@@ -240,23 +239,37 @@ class Duel extends Phaser.Scene {
     timesUp(){
         if (this.playerProgress > this.enemyProgress){
             console.log("PLAYER WINS!");
+            this.scene.switch('Victory');
         }
         else if(this.playerProgress < this.enemyProgress){
             console.log("ENEMY WINS!");
+            this.scene.switch('Defeat');
         }
         else{
             console.log("TIE BREAKER! Who has the most health WINS!");
 
             if (this.playerHealth > this.enemyHealth){
                 console.log("PLAYERWINS");
+                this.scene.switch('Victory');
             }
             else if (this.playerHealth < this.enemyHealth){
                 console.log("ENEMYWINS");
+                this.scene.switch('Defeat');
             }
             else{
                 console.log("REAL TIE :|");
             }
         }
+    }
+
+    checkWin() {
+        // check for wins even when time didn't end
+        
+    }
+
+    resetGame() {
+        // reset the game so it is a fresh new game
+
     }
 
     clickBackButton(){

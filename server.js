@@ -20,7 +20,7 @@ app.use(express.urlencoded());
 function validateCookie(req, res, next) {
   const { cookies } = req;
   if ('email' in cookies) {
-    console.log('email Exists');
+    
     if (cookies.email != '') {
       next();
     }
