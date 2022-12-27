@@ -12,7 +12,7 @@
         <div class="login-container">
             <h1 class="login-title">Welcome to Codify</h1>
 
-            <form class="form" action="/login" method="post">
+            <form class="form" action="/auth/register" method="POST">
 
                 <div class="input-group success">
                     <label for="username">Username</label>
@@ -32,9 +32,19 @@
                     <span class="msg">Incorrect Password</span>
                 </div>
 
+                <div class="input-group error">
+                    <label for="password">Confirm Password</label>
+                    <input type="passwordConfirm" name="passwordConfirm" id="passwordConfirm">
+                    <span class="msg">Incorrect Password</span>
+                </div>
+
                 <button type="submit" class="login-button">Register</button>
             </form>
         </div>
     </div>
+
+    
+
+
 </body>
 </html>

@@ -23,6 +23,13 @@
 .navbar-toggler{
     border: none!important;
 }
+
+.nav-link {
+    color:black;
+    font-weight: 600;
+    font-size: 16px;
+}
+
 .nav-link{
     color: #555!important;
     font-weight: 600;

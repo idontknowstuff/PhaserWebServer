@@ -39,7 +39,10 @@ con.connect(function(err) {
 
 app.use(cookieParser());
 app.use(express.static(DIST_DIR));
-app.use(express.urlencoded());
+// Parse URL-encoded bodied (as sent by HTML forms)
+app.use(express.urlencoded({extended: false}));
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
 
 function validateCookie(req, res, next) {
   const { cookies } = req;
@@ -60,25 +63,14 @@ function validateCookie(req, res, next) {
 // define routes
 
 app.use('/', require('./routes/pages'));
+app.use('/auth', require('./routes/auth'));
 
-// app.get('/', (req, res) => {
-//   res.sendFile(HTML_MAIN_FILE);
-// })
-
-// app.get('/login', (req, res) => {
-//   res.sendFile(HTML_LOGIN_FILE);
-// });
-
-// app.get('/register', (req, res) => {
-//   res.sendFile(HTML_REGISTER_FILE);
-// });
-
-// app.get('/game', validateCookie, (req, res) => {
-//   res.sendFile(HTML_GAME_FILE);
-// });
+app.get('/game', (req, res) => {
+  res.sendFile(HTML_GAME_FILE);
+})
 
 // makes cookies 
-app.post('/login', (req, res) => {
+app.post('/auth/login', (req, res) => {
   res.cookie('email', req.body.email);
   res.cookie('password', req.body.password);
   res.redirect('/game');

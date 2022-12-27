@@ -20,6 +20,7 @@
   "homepage": "https://github.com/idontknowstuff/PhaserWebServer#readme",
   "dependencies": {
     "assert": "^2.0.0",
+    "bcrypt": "^5.1.0",
     "build": "^0.1.4",
     "cookie-parser": "^1.4.6",
     "crypto-browserify": "^3.12.0",
@@ -27,6 +28,7 @@
     "express": "^4.18.2",
     "file-loader": "^6.2.0",
     "html-loader": "^4.1.0",
+    "jsonwebtoken": "^9.0.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.20",
