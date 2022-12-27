@@ -206,11 +206,7 @@ class Duel extends Phaser.Scene {
         this.block2text.setPosition(this.block2.x, this.block2.y);
         this.block3text.setPosition(this.block3.x, this.block3.y);
         this.block4text.setPosition(this.block4.x, this.block4.y);
-        // var graphics = this.add.graphics();
-        // graphics.strokeRect(this.zone1.x - this.zone1.input.hitArea.width / 2, this.zone1.y - this.zone1.input.hitArea.height / 2, this.zone1.input.hitArea.width, this.zone1.input.hitArea.height);
-        // graphics.strokeRect(this.zone2.x - this.zone2.input.hitArea.width / 2, this.zone2.y - this.zone2.input.hitArea.height / 2, this.zone2.input.hitArea.width, this.zone2.input.hitArea.height);
-        // graphics.strokeRect(this.zone3.x - this.zone3.input.hitArea.width / 2, this.zone3.y - this.zone3.input.hitArea.height / 2, this.zone3.input.hitArea.width, this.zone3.input.hitArea.height);
-        // graphics.strokeRect(this.zone4.x - this.zone4.input.hitArea.width / 2, this.zone4.y - this.zone4.input.hitArea.height / 2, this.zone4.input.hitArea.width, this.zone4.input.hitArea.height);
+        
         if (this.keySpace.isDown){
             console.log("SPACEKEY IS DOWN");
             console.log(this.zone1.x);
@@ -226,6 +222,7 @@ class Duel extends Phaser.Scene {
     countdown(){
         if (this.timer >= 0){
             this.timer -= 10;
+            this.checkWin();
             this.time.setText("Time left: " + this.timer);
         }
         else{
@@ -237,11 +234,11 @@ class Duel extends Phaser.Scene {
     }
 
     timesUp(){
-        if (this.playerProgress > this.enemyProgress){
+        if (this.playerProgress > this.enemyProgress || this.playerProgress > 5){
             console.log("PLAYER WINS!");
             this.scene.switch('Victory');
         }
-        else if(this.playerProgress < this.enemyProgress){
+        else if(this.playerProgress < this.enemyProgress || this.enemyProgress > 5){
             console.log("ENEMY WINS!");
             this.scene.switch('Defeat');
         }
@@ -263,11 +260,23 @@ class Duel extends Phaser.Scene {
     }
 
     checkWin() {
+        // TODO
         // check for wins even when time didn't end
-        
+
+        if (this.playerProgress > 5){
+            console.log("PLAYER WINS!");
+            this.timer = -1;
+            this.scene.switch('Victory');
+        }
+        else if(this.enemyProgress > 5){
+            console.log("ENEMY WINS!");
+            this.timer = -1;
+            this.scene.switch('Defeat');
+        }
     }
 
     resetGame() {
+        // TODO
         // reset the game so it is a fresh new game
 
     }

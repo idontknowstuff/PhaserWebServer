@@ -1,17 +1,41 @@
 const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const mysql = require('mysql2');
+const dotenv = require('dotenv');
+
+dotenv.config({path: './.env'});
 
 const app = express();
 const DIST_DIR = path.join(__dirname, '/dist');
 const HTML_MAIN_FILE = path.join(DIST_DIR, 'index.html');
 const HTML_LOGIN_FILE = path.join(DIST_DIR, 'login.html');
+const HTML_REGISTER_FILE = path.join(DIST_DIR, 'register.html');
 const HTML_GAME_FILE = path.join(DIST_DIR, 'game.html');
 
 const hardcodedusers = [
   {email: "user@one.com", password: "abc"},
   {email: "user@two.com", password: "def"}
 ];
+
+var con = mysql.createConnection({
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  // var sql = "";
+  // con.query(sql, function (err, result) {
+    // if (err) throw err;
+    // console.log("Table created");
+  // });
+});
+
+// TODO: Username and password verification
 
 app.use(cookieParser());
 app.use(express.static(DIST_DIR));
@@ -20,7 +44,7 @@ app.use(express.urlencoded());
 function validateCookie(req, res, next) {
   const { cookies } = req;
   if ('email' in cookies) {
-    
+
     if (cookies.email != '') {
       next();
     }
@@ -33,17 +57,25 @@ function validateCookie(req, res, next) {
   }
 }
 
-app.get('/', (req, res) => {
-  res.sendFile(HTML_MAIN_FILE);
-})
+// define routes
 
-app.get('/login', (req, res) => {
-  res.sendFile(HTML_LOGIN_FILE);
-});
+app.use('/', require('./routes/pages'));
 
-app.get('/game', validateCookie, (req, res) => {
-  res.sendFile(HTML_GAME_FILE);
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(HTML_MAIN_FILE);
+// })
+
+// app.get('/login', (req, res) => {
+//   res.sendFile(HTML_LOGIN_FILE);
+// });
+
+// app.get('/register', (req, res) => {
+//   res.sendFile(HTML_REGISTER_FILE);
+// });
+
+// app.get('/game', validateCookie, (req, res) => {
+//   res.sendFile(HTML_GAME_FILE);
+// });
 
 // makes cookies 
 app.post('/login', (req, res) => {
