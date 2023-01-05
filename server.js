@@ -3,6 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
+const uuid = require('uuid');
 
 dotenv.config({path: './.env'});
 
@@ -72,9 +73,21 @@ app.get('/game', (req, res) => {
 // makes cookies 
 app.post('/auth/login', (req, res) => {
   res.cookie('email', req.body.email);
-  res.cookie('password', req.body.password);
   res.redirect('/game');
 });
+
+app.post('/api/auth/login', (req, res) => {
+  let body = req.body;
+  console.log(body.email);
+  console.log(body.password);
+  res.cookie('sessionID', uuid.v4());
+  // always return failure for testing purposes
+  let responseData = {
+    success: true,
+    // error: "wrongPassword"
+  }
+  res.json(responseData);
+})
 
 const PORT = process.env.PORT || 8080;
 

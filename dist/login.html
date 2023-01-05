@@ -11,24 +11,50 @@
     <div class="full-screen-container">
         <div class="login-container">
             <h1 class="login-title">Welcome to Codify</h1>
+            
+            <div class="input-group"> <!-- can write success and error afterwards to change colors-->
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                <span class="msg">Valid Email</span>
+            </div>
 
-            <form class="form" action="/auth/login" method="POST">
+            <div class="input-group error">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+                <span id="wrongPasswordError" style="display: none" class="msg">Incorrect Password</span>
+            </div>
 
-                <div class="input-group success">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email">
-                    <span class="msg">Valid Email</span>
-                </div>
-
-                <div class="input-group error">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password">
-                    <span class="msg">Incorrect Password</span>
-                </div>
-
-                <button type="submit" class="login-button">Login</button>
-            </form>
+            <button type="submit" onclick="signin()" class="login-button">Login</button>
         </div>
     </div>
 </body>
+<script>
+    function signin() {
+
+        let data = {
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        }
+
+        fetch("/api/auth/login", {
+            headers: {
+                'Accept': 'application/json', // response format
+                'Content-Type': 'application/json' // request format
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        }).then(res => res.json())
+        .then(body => {
+            console.log(body);
+            if (body.success === false && body.error === "wrongPassword") {
+                console.log(body);
+                document.getElementById("wrongPasswordError").style.display = "";
+                return;
+            }
+            if (body.success === true) {
+                window.location = "/game";
+            }
+        })
+    }
+</script>
 </html>

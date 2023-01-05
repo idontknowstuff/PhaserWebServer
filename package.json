@@ -32,7 +32,8 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.20",
-    "phaser": "^3.55.2"
+    "phaser": "^3.55.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "webpack-cli": "^4.10.0"
