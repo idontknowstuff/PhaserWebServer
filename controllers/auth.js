@@ -19,9 +19,10 @@ exports.register = (req, res) => {
 
     const DIST_DIR = path.join(__dirname, '../dist');
     const HTML_MAIN_FILE = path.join(DIST_DIR, 'index.html');
-    const HTML_LOGIN_FILE = path.join(DIST_DIR, 'login.html');
-    const HTML_REGISTER_FILE = path.join(DIST_DIR, 'register.html');
+    const HTML_LOGIN_FILE = path.join(DIST_DIR, 'login.ejs');
+    const HTML_REGISTER_FILE = path.join(DIST_DIR, 'register.ejs');
     const HTML_GAME_FILE = path.join(DIST_DIR, 'game.html');
+    
 
     con.query('SELECT email FROM accounts WHERE email =?', [email], async (error, result) => {
         if (error) {
@@ -31,14 +32,15 @@ exports.register = (req, res) => {
         //TODO: Make message show in html
         if (result.length > 0){
             console.log("HShss");
-            return res.sendfile(HTML_REGISTER_FILE, {
-                message: 'That email is already in use'
-            });
-        } else if (password != passwordConfirm) {
+            const errorMessage = req.flash('errorMessage');
+            req.flash('errorMessage', 'That email is already in use');
+            return res.render(HTML_REGISTER_FILE, { errorMessage });
+        
+        } else if (password !== passwordConfirm) {
             console.log("HShss2");
-            return res.sendfile(HTML_REGISTER_FILE, {
-                message: 'Passwords do not match'
-            });
+            const errorMessage = req.flash('errorMessage');
+            req.flash('errorMessage', 'Passwords do not match');
+            return res.render(HTML_REGISTER_FILE, { errorMessage });
         }
 
         let hashedPassword = await bcrypt.hash(password, 8);
@@ -49,9 +51,9 @@ exports.register = (req, res) => {
                 console.log(error);
             } else {
                 console.log(result)
-                return res.sendfile(HTML_REGISTER_FILE, {
-                    message: 'User Registered'
-                });
+                const successMessage = req.flash('successMessage');
+                req.flash('successMessage', 'Account Successfully Created');
+                return res.render(HTML_REGISTER_FILE, { successMessage });
             }
         })
 

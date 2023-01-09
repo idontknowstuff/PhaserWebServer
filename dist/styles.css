@@ -123,3 +123,31 @@ body {
 .login-button:focus {
     background-color:hsl(var(--primary-hsl), .4);
 }
+
+.message.error {
+    font-size: 1.25rem;
+    background-color: hsl(var(--error-hsl), .8);
+    border: none;
+    outline: none;
+    border-radius: .25em;
+    color: white;
+    font-weight: lighter;
+}
+
+.message.success {
+    font-size: 1.25rem;
+    background-color: hsl(var(--success-hsl), .8);
+    border: none;
+    outline: none;
+    border-radius: .25em;
+    color: white;
+    font-weight: lighter;
+}
+
+.go-back {
+    margin: 0;
+    color:white;
+    text-align:left;
+    font-size: 2rem;
+    font-weight: normal;
+}
